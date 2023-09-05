@@ -1,0 +1,11 @@
+![image](https://github.com/paramka0/db_practice/assets/74873667/5db4b215-a23d-4d77-a8d2-abb9c1b36c36)
+![image](https://github.com/paramka0/db_practice/assets/74873667/216685ff-4239-4bb6-baef-ab53f076a557)
+![image](https://github.com/paramka0/db_practice/assets/74873667/bb6dce3a-5b00-490a-9710-4762f7389099)
+![image](https://github.com/paramka0/db_practice/assets/74873667/72028e0b-2ef9-4a65-aac6-2433bd4241bb)
+![image](https://github.com/paramka0/db_practice/assets/74873667/9cde950f-cda6-4d27-84e9-132cc64b70f9)
+![image](https://github.com/paramka0/db_practice/assets/74873667/66484159-6326-4451-b760-e7ed5c19b0d9)
+![image](https://github.com/paramka0/db_practice/assets/74873667/18361358-217e-4804-9c39-32d05b8a0e89)
+![image](https://github.com/paramka0/db_practice/assets/74873667/6e520222-f8d0-4d1c-b04b-18252d4eac4a)
+![image](https://github.com/paramka0/db_practice/assets/74873667/9789a1cf-3f36-4e46-a7ec-95adebd9d848)
+![image](https://github.com/paramka0/db_practice/assets/74873667/1120c0b1-89cb-4ade-82ff-b6ba89115c60)
+
