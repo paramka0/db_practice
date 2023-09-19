@@ -16,7 +16,15 @@ SELECT person.id, person.name, "age", "gender", "address", pizzeria.id, pizzeria
 "rating" FROM "person", "pizzeria"
 ORDER BY pizzeria.id ASC;
 ```
+```sql
+SELECT person.id, person.name, "age", "gender", "address", pizzeria.id, pizzeria.name,
+"rating" FROM "person", "pizzeria"
+ORDER BY person.id ASC;
+```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/163cd372-6c9c-439e-a6f1-cb405275ee49)
+
+![image](https://github.com/paramka0/db_practice/assets/74873667/50963c45-b905-405d-996b-9edc9746dfd2)
+
 
 --2--
 ```sql
