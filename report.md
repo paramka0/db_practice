@@ -10,7 +10,7 @@
 ![image](https://github.com/paramka0/db_practice/assets/74873667/1120c0b1-89cb-4ade-82ff-b6ba89115c60)
 
 ## 19.09.2023
---1--
+`--1--
 ```sql
 SELECT person.id, person.name, "age", "gender", "address", pizzeria.id, pizzeria.name,
 "rating" FROM "person", "pizzeria"
