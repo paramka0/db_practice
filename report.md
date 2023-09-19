@@ -9,11 +9,13 @@
 ![image](https://github.com/paramka0/db_practice/assets/74873667/9789a1cf-3f36-4e46-a7ec-95adebd9d848)
 ![image](https://github.com/paramka0/db_practice/assets/74873667/1120c0b1-89cb-4ade-82ff-b6ba89115c60)
 
-19.09.2023
+##19.09.2023
 --1--
+```sql
 SELECT person.id, person.name, "age", "gender", "address", pizzeria.id, pizzeria.name,
 "rating" FROM "person", "pizzeria"
 ORDER BY pizzeria.id ASC;
+```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/163cd372-6c9c-439e-a6f1-cb405275ee49)
 
 --2--
