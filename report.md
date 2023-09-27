@@ -74,3 +74,6 @@ LEFT JOIN "pizzeria" ON pizzeria.id = menu.pizzeria_id
 ORDER BY "person_name", "pizza_name", "pizzeria_name";
 ```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/f6cda925-8a8e-43c6-92d9-9721e5c47813)
+
+## 26.09.23
+--1--
