@@ -98,5 +98,51 @@ WHERE courseid = (SELECT courseid FROM courses WHERE coursename = 'Матема�
 ```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/97db56ed-ab6a-46af-929d-98e850767e16)
 
+--4--
+```sql
+SELECT firstname, lastname FROM students
+JOIN studentcourses ON studentcourses.studentid = students.studentid
+WHERE courseid = (SELECT courseid FROM courses WHERE coursename = 'История') AND age = 20;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/73f6b9e6-261d-4b0a-bba1-18f4b0e97242)
+
+--5--
+```sql
+SELECT coursename, (SELECT COUNT(studentid) FRom studentcourses WHERE c.courseid = studentcourses.courseid) 
+FROM courses c;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/c8aefdce-e2fa-4edd-81b8-6e5718797940)
+
+--6--
+```sql
+SELECT AVG(age) AS avg_age FROM students;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/a8c1b4e0-6ef8-4b1e-812f-b1292b6a32d7)
+
+--7--
+```sql
+SELECT firstname, lastname, studentid FROM students
+WHERE studentid NOT IN (SELECT studentid FROM studentcourses);
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/ff1fc232-cb31-4357-a290-26e98c516854)
+
+--8--
+```sql
+SELECT coursename, (SELECT COUNT(studentid) FROM studentcourses WHERE c.courseid = studentcourses.courseid) 
+FROM courses c;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/f4298a70-82bb-4094-9082-4b16ebd6c8ff)
+
+--9--
+```sql
+SELECT firstname, lastname FROM students
+JOIN studentcourses ON studentcourses.studentid = students.studentid
+WHERE courseid = (SELECT courseid FROM courses WHERE coursename = 'Биология') AND age >= 22;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/b98a1be6-3346-4799-b75f-4fa6b50928c1)
+
+
+
+
 
 
