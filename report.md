@@ -77,3 +77,10 @@ ORDER BY "person_name", "pizza_name", "pizzeria_name";
 
 ## 26.09.23
 --1--
+```sql
+SELECT firstname, lastname
+FROM students
+WHERE age > 21;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/9e9a1f45-ce88-4e5b-a4e8-2300ac43eea4)
+
