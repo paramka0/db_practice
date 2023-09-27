@@ -84,3 +84,19 @@ WHERE age > 21;
 ```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/9e9a1f45-ce88-4e5b-a4e8-2300ac43eea4)
 
+--2--
+```sql
+SELECT coursename FROM courses;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/90730cd9-529c-4c1c-91c5-d8dadce1f3e8)
+
+--3--
+```sql
+SELECT firstname, lastname FROM students
+JOIN studentcourses ON studentcourses.studentid = students.studentid
+WHERE courseid = (SELECT courseid FROM courses WHERE coursename = 'Математика');
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/97db56ed-ab6a-46af-929d-98e850767e16)
+
+
+
