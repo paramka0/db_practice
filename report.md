@@ -283,6 +283,34 @@ ORDER BY person_id DESC;
 ```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/bd8b675e-e555-4aae-9380-815d60534329)
 
+## 13.09.23
+--1--
+```sql
+SELECT menu.id AS object_id, pizza_name AS object_name FROM menu
+UNION
+SELECT person.id, name FROM person
+ORDER BY object_id ASC, object_name ASC;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/0ba0e582-3a82-484d-be9b-9140eced3bea)
+
+--2--
+```sql
+SELECT menu.id AS object_id, pizza_name AS object_name FROM menu
+UNION All
+SELECT person.id, name FROM person
+ORDER BY object_name DESC;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/036414bc-c972-44fc-a0bf-98f58b6ec5fa)
+
+--3--
+```sql
+SELECT person_id, visit_date AS action_date FROM person_visits
+INTERSECT
+SELECT person_id, order_date FROM person_order ORDER BY action_date ASC, person_id DESC;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/df235834-7a12-4ff5-8518-fdd2e5cab141)
+
+
 
 
 
