@@ -332,6 +332,80 @@ WHERE person_id IS NULL;
 ```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/0f87e9d7-f517-437a-8550-3574a195e3e5)
 
+## 11.10.23
+
+--1--
+
+```sql
+CREATE INDEX idx_menu_pizzeria_id ON menu(pizzeria_id);
+CREATE INDEX idx_person_visits_person_id ON person_visits(person_id);
+CREATE INDEX idx_person_visits_pizzeria_id ON person_visits(pizzeria_id);
+CREATE INDEX idx_person_order_person_id ON person_order(person_id);
+CREATE INDEX idx_person_order_menu_id ON person_order(menu_id);
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/cd1edfbb-27d4-4916-bc4e-11a9d37dbd1a)
+
+  
+--2--
+```sql
+SET enable_seqscan = OFF;
+EXPLAIN ANALYZE SELECT pizza_name, pizzeria.name AS pizzeria_name FROM menu, pizzeria
+WHERE menu.pizzeria_id = pizzeria.id
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/279265d3-65f6-46a6-9947-a8796c028956)
+
+  
+--3--
+```sql
+CREATE INDEX idx_person_name ON person(name);
+EXPLAIN ANALYZE 
+SELECT UPPER(name) FROM person;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/b871aaa6-2671-4bcd-a4f3-1fd5d62fa0b5)
+ 
+  
+--4--
+```sql
+CREATE INDEX idx_person_order_multi ON person_order(person_id, menu_id);
+EXPLAIN ANALYZE
+SELECT person_id, menu_id,order_date
+FROM person_order
+WHERE person_id = 8 AND menu_id = 19;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/3e0f155f-1c1d-4d46-a275-2696e8abd617)
+
+  
+--5--
+```sql
+CREATE UNIQUE INDEX idx_menu_unique ON menu(pizzeria_id, pizza_name);
+EXPLAIN ANALYZE
+SELECT pizzeria_id, pizza_name FROM menu
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/b45f2b0f-f4be-4e65-a300-f08e2520c558)
+
+  
+--6--
+```sql
+CREATE UNIQUE INDEX idx_person_order_order_date ON person_order(person_id, menu_id) WHERE order_date = '2022-01-01';
+EXPLAIN ANALYZE
+SELECT person_id, menu_id FROM person_order
+WHERE order_date = '2022-01-01'
+```
+![image](https://github.com/IAmIngibitor/DB-practice-in-college/assets/109351663/1f0e15db-f5c7-4920-a7dd-4e4b318ccc4a)  
+  
+--7--
+```sql
+CREATE INDEX idx_1 ON pizzeria(id, rating);
+EXPLAIN ANALYZE
+SELECT
+    m.pizza_name AS pizza_name,
+    max(rating) OVER (PARTITION BY rating ORDER BY rating ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS k
+FROM  menu m
+INNER JOIN pizzeria pz ON m.pizzeria_id = pz.id
+ORDER BY 1,2;
+```
+
+![image](https://github.com/paramka0/db_practice/assets/74873667/ca269e55-3ce4-48ec-8186-5f617efa1a17)
 
 
 
