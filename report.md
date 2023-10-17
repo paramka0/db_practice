@@ -310,6 +310,28 @@ SELECT person_id, order_date FROM person_order ORDER BY action_date ASC, person_
 ```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/df235834-7a12-4ff5-8518-fdd2e5cab141)
 
+## 20.09.23
+
+--1--
+```sql
+SELECT name, rating
+FROM  pizzeria
+LEFT  JOIN person_visits ON  pizzeria.id = person_visits.pizzeria_id
+WHERE person_visits.pizzeria_id IS NULL
+ORDER BY rating DESC;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/e85753a1-d96f-4f5e-b822-b5ca49951852)
+
+--2--
+```sql
+SELECT missing_days::date FROM generate_series('2022-01-01', '2022-01-10', interval '1 day') as missing_days
+FULL JOIN
+(SELECT * FROM person_visits
+WHERE person_id = 1 OR  person_id = 2) AS tab ON missing_days = tab.visit_date
+WHERE person_id IS NULL;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/0f87e9d7-f517-437a-8550-3574a195e3e5)
+
 
 
 
