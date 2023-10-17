@@ -141,7 +141,27 @@ WHERE courseid = (SELECT courseid FROM courses WHERE coursename = 'Биолог�
 ```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/b98a1be6-3346-4799-b75f-4fa6b50928c1)
 
+## 04.10.23
 
+--1--
+```sql
+SELECT id FROM menu 
+EXCEPT
+SELECT menu_id FROM person_order
+ORDER BY id ASC;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/a7f3f195-59de-435c-98a7-ef04e2a6d951)
+
+--2--
+```sql
+SELECT pizza_name, price, name FROM menu m
+LEFT JOIN pizzeria ON m.pizzeria_id = pizzeria.id
+WHERE m.id IN (SELECT id FROM menu 
+EXCEPT
+SELECT menu_id FROM person_order)
+ORDER BY price ASC;
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/87bdc218-e4cd-4b5c-ae29-77035472bace)
 
 
 
