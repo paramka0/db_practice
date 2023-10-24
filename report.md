@@ -407,6 +407,105 @@ ORDER BY 1,2;
 
 ![image](https://github.com/paramka0/db_practice/assets/74873667/ca269e55-3ce4-48ec-8186-5f617efa1a17)
 
+## 18.10.2023
+
+--1--
+```sql
+SELECT cus.first_name, cus.last_name FROM customers cus
+JOIN orders ord ON cus.customer_id = ord.customer_id
+GROUP BY cus.first_name, cus.last_name, ord.order_date
+HAVING COUNT(*) >= 2 AND ord.order_date BETWEEN '2023-07-17' AND '2023-10-17'
+ORDER BY 1, 2
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/06b16b65-3699-4786-be01-aafb5a642e92)
+
+--2--
+```sql
+SELECT AVG(ord.quantity) AS average, prd.category FROM orders ord
+JOIN products prd ON prd.product_id = ord.product_id
+WHERE price >= 50
+GROUP BY prd.category
+ORDER BY 2
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/0e293520-18b5-41dd-92a4-7fd76dc2b22b)
+
+--3--
+```sql
+WITH sum_customers AS (
+	SELECT ord.customer_id, SUM(prd.price) AS summa FROM orders ord
+	JOIN products prd ON prd.product_id = ord.product_id
+	GROUP BY ord.customer_id
+), avg_sum AS (
+	SELECT ord.order_id, ord.customer_id, ord.quantity, SUM(prd.price) AS summa FROM orders ord
+	JOIN products prd ON prd.product_id = ord.product_id
+	GROUP BY ord.order_id
+)
+
+SELECT cus.first_name, cus.last_name, cus.email FROM customers cus
+JOIN sum_customers scus ON scus.customer_id = cus.customer_id
+JOIN avg_sum asum ON asum.customer_id = cus.customer_id
+GROUP BY cus.first_name, cus.last_name, cus.email, scus.summa
+HAVING scus.summa > AVG(asum.summa)
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/b776ae03-f9a2-4a1c-b7e5-481d97b1abbe)
+
+--4--
+```sql
+WITH sum_price AS (
+	SELECT ord.order_id, ord.customer_id, ord.product_id, ord.quantity, SUM(prd.price) AS summa FROM orders ord
+	JOIN products prd ON prd.product_id = ord.product_id
+	GROUP BY ord.order_id
+	HAVING SUM(prd.price) >= 1000
+)
+
+SELECT cus.first_name, cus.last_name FROM customers cus
+JOIN sum_price spr ON spr.customer_id = cus.customer_id
+JOIN products prd ON prd.product_id = spr.product_id
+WHERE category != 'Electronics'
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/28270a27-2eac-48fa-b33b-08b022b054cf)
+
+--5--
+--6--
+```sql
+WITH customer_orders AS (
+	SELECT * FROM (SELECT ord.customer_id, ord.order_date, row_number() over(partition by ord.customer_id order by ord.order_date DESC) as rn FROM orders ord) cus_ord
+	WHERE rn < 3
+	
+), max_range_order AS (
+	SELECT csod.customer_id, (MAX(csod.order_date) - MIN(csod.order_date)) AS order_range FROM customer_orders csod
+	GROUP BY 1
+)
+
+SELECT cus.first_name, cus.last_name, MAX(mro.order_range) FROM max_range_order mro
+JOIN customers cus ON cus.customer_id = mro.customer_id
+GROUP BY 1, 2
+HAVING MAX(mro.order_range) = (SELECT MAX(mro.order_range) FROM max_range_order mro)
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/309f6aa7-090e-4f85-96a3-831630f73463)
+
+--7--
+```sql
+SELECT cus.first_name, cus.last_name FROM customers cus
+LEFT JOIN orders ord ON ord.customer_id = cus.customer_id
+WHERE ord.order_date BETWEEN '2023-08-23' AND '2023-10-23'
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/8018f072-ded5-45f1-82d4-167a1f358e8d)
+
+--8--
+```sql
+UPDATE products
+SET price = price - (price * 10 / 100)
+WHERE category = 'Clothing';
+
+SELECT * FROM products
+WHERE category = 'Clothing'
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/4d4d1cc1-a26c-4f00-8458-440b54a567e6)
+
+
+
+
 
 
 
