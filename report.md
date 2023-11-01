@@ -503,6 +503,10 @@ WHERE category = 'Clothing'
 ```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/4d4d1cc1-a26c-4f00-8458-440b54a567e6)
 
+##01.11.23
+![image](https://github.com/paramka0/db_practice/assets/74873667/9fc5d980-4958-4e15-be68-4312946dfdcf)
+
+
 
 
 
