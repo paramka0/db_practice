@@ -608,6 +608,15 @@ VALUES ('1', 'Косметический ремонт', '15000', '20012-02-05'),
 ('5', 'Евроремонт', '75000', '20020-08-13');
 SELECT * FROM execution;
 ```
+```sql
+INSERT INTO execution_components_details (uniquelid, component_id, component_cost, work_cost, execution_id, discount) 
+VALUES ('1', '1', '13500', '15000', '1', '15'),
+('2', '2', '11000', '15000', '2', '10'),
+('3', '3', '9000', '10000', '3', '25'),
+('4', '4', '22000', '25000', '4', '17'),
+('5', '5', '65000', '75000', '5', '21');
+SELECT * FROM execution_components_details;
+```
 
 
 
