@@ -722,7 +722,8 @@ BEFORE UPDATE ON order_
 FOR EACH ROW
 EXECUTE FUNCTION check_order_status();
 ```
-![image](https://github.com/paramka0/db_practice/assets/74873667/2492bbbe-b605-483e-8160-0e1140352b6a)
+![image](https://github.com/paramka0/db_practice/assets/74873667/c8aca933-98f5-4ef8-8965-3a0da149945b)
+
 
 -- Триггер 3: Установка кода выполнения при изменении статуса заказа --
 ```sql
