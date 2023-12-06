@@ -776,6 +776,8 @@ BEFORE DELETE ON staff
 FOR EACH ROW
 EXECUTE FUNCTION check_date_accepted();
 ```
+![image](https://github.com/paramka0/db_practice/assets/74873667/5b057a6e-7cca-4f03-94ce-d52eaeefc236)
+
 
 
 
