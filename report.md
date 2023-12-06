@@ -663,7 +663,7 @@ SELECT * FROM staff;
 ```
 # триггеры
 
--- первый тригер --
+-- тестовый тригер --
 ```sql
 CREATE FUNCTION validate_telephone() RETURNS TRIGGER AS $$
 BEGIN
@@ -680,7 +680,91 @@ CREATE TRIGGER check_telephone BEFORE INSERT OR UPDATE ON client FOR EACH ROW EX
 ```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/20e63a38-2235-40cd-aafb-33b2b94e2b79)
 
+-- Триггер 1: Проверка наличия заказа для каждого сотрудника, принимающего заказы --
+```sql
+CREATE OR REPLACE FUNCTION check_order_exists()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (
+        SELECT COUNT(*) FROM order_
+        WHERE tab_number_master = NEW.tab_number
+    ) = 0 THEN
+        RAISE EXCEPTION 'There are no orders for this staff member.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
+CREATE TRIGGER check_order_exists_trigger
+AFTER INSERT OR UPDATE ON staff
+FOR EACH ROW
+EXECUTE FUNCTION check_order_exists();
+```
+-- Триггер 2: Проверка статуса заказа при обновлении --
+```sql
+CREATE OR REPLACE FUNCTION check_order_status()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (
+        SELECT order_status_id FROM order_
+        WHERE order_id = NEW.order_id
+    ) = 4 THEN
+        RAISE EXCEPTION 'Cannot update completed order.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER check_order_status_trigger
+BEFORE UPDATE ON order_
+FOR EACH ROW
+EXECUTE FUNCTION check_order_status();
+```
+-- Триггер 3: Установка кода выполнения при изменении статуса заказа --
+```sql
+CREATE OR REPLACE FUNCTION set_execution_code()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (
+        OLD.order_status_id <> NEW.order_status_id
+    ) THEN
+        CASE NEW.order_status_id
+            WHEN 1 THEN NEW.execution_code := 15;
+            WHEN 2 THEN NEW.execution_code := 25;
+            WHEN 3 THEN NEW.execution_code := 31;
+            WHEN 4 THEN NEW.execution_code := 34;
+            WHEN 5 THEN NEW.execution_code := 46;
+        END CASE;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER set_execution_code_trigger
+BEFORE UPDATE ON order_
+FOR EACH ROW
+EXECUTE FUNCTION set_execution_code();
+```
+-- Триггер 4: Проверка даты принятия уволенного сотрудника --
+```sql
+CREATE OR REPLACE FUNCTION check_date_accepted()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (
+        SELECT date_accepted FROM staff
+        WHERE tab_number = OLD.tab_number
+    ) <= CURRENT_DATE THEN
+        RAISE EXCEPTION 'The accepted date of a dismissed staff member cannot be in the future.';
+    END IF;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER check_date_accepted_trigger
+BEFORE DELETE ON staff
+FOR EACH ROW
+EXECUTE FUNCTION check_date_accepted();
+```
 
 
 
