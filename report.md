@@ -522,7 +522,7 @@ address VARCHAR(100),
 telephone VARCHAR(20)
 );
 
-CREATE TABLE order (
+CREATE TABLE order_ (
 order_id INT PRIMARY KEY,
 equipment_id INT,
 client_id INT,
