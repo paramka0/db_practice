@@ -506,6 +506,70 @@ WHERE category = 'Clothing'
 ## 01.11.23
 ![image](https://github.com/paramka0/db_practice/assets/74873667/27e6cfcf-e1a1-40fb-9f53-3dca7c9ea320)
 
+```sql
+CREATE TABLE equipment (
+id INT PRIMARY KEY,
+name VARCHAR(255),
+serial_number VARCHAR(255),
+description VARCHAR(255),
+manufacturer VARCHAR(255),
+model VARCHAR(255)
+);
+
+CREATE TABLE client (
+client_id INT PRIMARY KEY,
+family VARCHAR(50),
+address VARCHAR(100),
+telephone VARCHAR(20)
+);
+
+CREATE TABLE order (
+order_id INT PRIMARY KEY,
+equipment_id INT,
+client_id INT,
+tab_number_master INT,
+order_status_id INT,
+execution_code INT
+);
+
+CREATE TABLE staff (
+tab_number INT PRIMARY KEY,
+family VARCHAR(50),
+post_cod INT,
+passport_series VARCHAR(10),
+passport_number VARCHAR(20),
+address VARCHAR(100),
+telephone VARCHAR(20),
+date_accepted DATE
+);
+
+CREATE TABLE post (
+post_cod INT PRIMARY KEY,
+post VARCHAR(50)
+);
+
+CREATE TABLE order_status (
+order_cod INT PRIMARY KEY,
+name VARCHAR(50)
+);
+
+CREATE TABLE execution (
+execution_code INT PRIMARY KEY,
+type_repair VARCHAR(50),
+total_cost FLOAT,
+date_execution DATE
+);
+
+CREATE TABLE execution_components_details (
+uniquelid INT PRIMARY KEY,
+component_id INT,
+component_cost FLOAT,
+work_cost FLOAT,
+amount INT,
+execution_id INT,
+discount FLOAT
+);
+```
 
 
 
