@@ -661,6 +661,24 @@ VALUES ('1', 'Крюков', '2', '4352', '430324', 'Омская область
 ('10', 'Агафонов', '7', '3254', '764343', 'Волгоградская область, город Серебряные Пруды, бульвар Косиора, 03', '+7 (947) 617-51-35', '2023-07-27');
 SELECT * FROM staff;
 ```
+# триггеры
+
+-- первый тригер --
+```sql
+CREATE FUNCTION validate_telephone() RETURNS TRIGGER AS $$
+BEGIN
+IF NEW.telephone SIMILAR TO '^\+7 (\d{3}) \d{3}-\d{2}-\d{2}$' THEN
+RETURN NEW;
+ELSE
+RAISE EXCEPTION 'Invalid telephone number format';
+END IF;
+END;
+$$
+LANGUAGE 'plpgsql';
+
+CREATE TRIGGER check_telephone BEFORE INSERT OR UPDATE ON client FOR EACH ROW EXECUTE FUNCTION validate_telephone();
+```
+![image](https://github.com/paramka0/db_practice/assets/74873667/20e63a38-2235-40cd-aafb-33b2b94e2b79)
 
 
 
