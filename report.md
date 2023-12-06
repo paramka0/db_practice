@@ -749,6 +749,13 @@ BEFORE UPDATE ON order_
 FOR EACH ROW
 EXECUTE FUNCTION set_execution_code();
 ```
+- было -
+![image](https://github.com/paramka0/db_practice/assets/74873667/321b377d-7628-4677-b80d-01a999aef250)
+
+- стало -
+![image](https://github.com/paramka0/db_practice/assets/74873667/087df38a-a606-48da-bd08-f84b13295ead)
+
+
 -- Триггер 4: Проверка даты принятия уволенного сотрудника --
 ```sql
 CREATE OR REPLACE FUNCTION check_date_accepted()
