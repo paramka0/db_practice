@@ -700,6 +700,8 @@ AFTER INSERT OR UPDATE ON staff
 FOR EACH ROW
 EXECUTE FUNCTION check_order_exists();
 ```
+![image](https://github.com/paramka0/db_practice/assets/74873667/b91c2bda-c1b2-4535-9997-133c9b72747a)
+
 -- Триггер 2: Проверка статуса заказа при обновлении --
 ```sql
 CREATE OR REPLACE FUNCTION check_order_status()
