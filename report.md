@@ -779,6 +779,9 @@ EXECUTE FUNCTION check_date_accepted();
 ```
 ![image](https://github.com/paramka0/db_practice/assets/74873667/5b057a6e-7cca-4f03-94ce-d52eaeefc236)
 
+#Отчет
+[отчет.docx](https://github.com/paramka0/db_practice/files/13582481/default.docx)
+
 
 
 
