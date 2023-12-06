@@ -615,8 +615,15 @@ VALUES ('1', '1', '13500', '15000', '1', '15'),
 ('5', '5', '65000', '75000', '5', '21');
 SELECT * FROM execution_components_details;
 ```
-
-
+```sql
+INSERT INTO order_ (order_id, equipment_id, client_id, tab_number_master, order_status_id, execution_code) 
+VALUES ('546', '1', '542353', '1', '1', '15'),
+('653', '2', '655343', '2', '2', '25'),
+('234', '3', '135446', '3', '3', '31'),
+('122', '4', '766543', '4', '4', '34'),
+('654', '5', '325655', '5', '5', '46');
+SELECT * FROM order_;
+```
 
 
 
