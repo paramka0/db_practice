@@ -512,8 +512,7 @@ id INT PRIMARY KEY,
 name VARCHAR(255),
 serial_number VARCHAR(255),
 description VARCHAR(255),
-manufacturer VARCHAR(255),
-model VARCHAR(255)
+manufacturer VARCHAR(255)
 );
 
 CREATE TABLE client (
@@ -565,7 +564,6 @@ uniquelid INT PRIMARY KEY,
 component_id INT,
 component_cost FLOAT,
 work_cost FLOAT,
-amount INT,
 execution_id INT,
 discount FLOAT
 );
